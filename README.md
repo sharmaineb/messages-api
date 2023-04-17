@@ -1,4 +1,4 @@
-# Create a Messages API ([lesson plan]())
+# Create a Messages API ([lesson plan](https://github.com/Tech-at-DU/ACS-2230-Server-Side-Architectures/blob/master/Lessons/04-Databases/README.md#create-a-messages-api-30-minutes))
 
 Clone the [starter code](https://github.com/tech-at-du/messages-api-starter) to get started with this activity. Open the directory in your terminal and run `npm install`. The starter code already includes code to set up the Mongoose connection; all we need to do is add the models and modify the routes.
 
