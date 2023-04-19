@@ -137,4 +137,3 @@ UserSchema.pre('find', function (next) {
 })
 ```
 
-# messages-api
