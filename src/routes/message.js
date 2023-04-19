@@ -6,7 +6,12 @@ const User = require('../models/user')
 
 /** Route to get all messages. */
 router.get('/', (req, res) => {
-    return res.send(`All Messages route`)
+    Message.find().then((messages) => {
+        return res.json({messages})
+    })
+    .catch((err) => {
+        throw err.message
+    })
 })
 
 /** Route to get one message by id. */
@@ -16,9 +21,20 @@ router.get('/:messageId', (req, res) => {
 
 /** Route to add a new message. */
 router.post('/', (req, res) => {
-    return res.send({
-        message: 'Create new message',
-        data: req.body
+    let message = new Message(req.body)
+    message.save()
+    .then(message => {
+        return User.findById(message.author)
+    })
+    .then(user => {
+        console.log(user)
+        user.messages.unshift(message)
+        return user.save()
+    })
+    .then(_ => {
+        return res.send(message)
+    }).catch(err => {
+        throw err.message
     })
 })
 
@@ -35,4 +51,4 @@ router.delete('/:messageId', (req, res) => {
     return res.send(`Delete message with id ${req.params.messageId}`)
 })
 
-module.exports = router
+module.exports = router;
